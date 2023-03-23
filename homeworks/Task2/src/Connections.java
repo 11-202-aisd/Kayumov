@@ -11,7 +11,7 @@ public class Connections {
         }
     }
 
-    public boolean add(int firstComputer, int secondComputer) {
+    public boolean connect(int firstComputer, int secondComputer) {
         if (connections[firstComputer] == connections[secondComputer]) {
             return false;
         }
@@ -25,7 +25,7 @@ public class Connections {
         return true;
     }
 
-    public boolean add(int[][] pares) {
+    public boolean connect(int[][] pares) {
         for (int[] pare : pares) {
             add(pare[0], pare[1]);
         }
