@@ -27,7 +27,7 @@ public class Connections {
 
     public boolean connect(int[][] pares) {
         for (int[] pare : pares) {
-            add(pare[0], pare[1]);
+            connect(pare[0], pare[1]);
         }
         return true;
     }
