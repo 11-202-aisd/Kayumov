@@ -3,7 +3,7 @@ public class Connect {
         int length = 10;
         int[][] pares = {{5,7}, {2,3}, {4,5}, {4,7}, {1,2}, {1,3}};
         Connections graph = new Connections(length);
-        graph.add(pares);
+        graph.connect(pares);
         System.out.println(graph.neetToConnect(3, 1));
     }
 }
