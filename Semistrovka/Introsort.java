@@ -1,12 +1,15 @@
+import java.util.Scanner;
+import java.io.*;
+
 public class Introsort { 
     public static int count;
-    public static void sort(int[] arr) {
+    public static void introsort(int[] arr) {
         int n = arr.length;
         int depthLimit = (int) Math.floor(Math.log(n)) * 2;
-        introsort(arr, 0, n - 1, depthLimit);
+        introsortHelper(arr, 0, n - 1, depthLimit);
     }
     
-    private static void introsort(int[] arr, int start, int end, int depthLimit) {
+    private static void introsortHelper(int[] arr, int start, int end, int depthLimit) {
         count++;
         if (end - start < 16) {
             insertionSort(arr, start, end);
@@ -16,22 +19,22 @@ public class Introsort {
             heapsort(arr, start, end);
             return;
         }
-        int middleIndex = chooseMiddleIndex(arr, start, end);
-        middleIndex = quickSortPart(arr, start, end, middleIndex);
-        introsort(arr, start, middleIndex - 1, depthLimit - 1);
-        introsort(arr, middleIndex + 1, end, depthLimit - 1);
+        int pivotIndex = choosePivotIndex(arr, start, end);
+        pivotIndex = partition(arr, start, end, pivotIndex);
+        introsortHelper(arr, start, pivotIndex - 1, depthLimit - 1);
+        introsortHelper(arr, pivotIndex + 1, end, depthLimit - 1);
     }
 
-    private static int chooseMiddleIndex(int[] arr, int start, int end) {
+    private static int choosePivotIndex(int[] arr, int start, int end) {
         return start + (end - start) / 2;
     }
 
-    private static int quickSortPart(int[] arr, int start, int end, int middleIndex) {
-        int middleValue = arr[middleIndex];
-        swap(arr, middleIndex, end);
+    private static int partition(int[] arr, int start, int end, int pivotIndex) {
+        int pivotValue = arr[pivotIndex];
+        swap(arr, pivotIndex, end);
         int storeIndex = start;
         for (int i = start; i < end; i++) {
-            if (arr[i] < middleValue) {
+            if (arr[i] < pivotValue) {
                 swap(arr, i, storeIndex);
                 storeIndex++;
             }
@@ -81,5 +84,25 @@ public class Introsort {
         int temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
+    }
+
+    public static void main(String[] args) throws IOException {
+        Scanner scan = new Scanner(new File("Arrays.txt"));
+        FileWriter writer = new FileWriter("results.txt");
+        int progress = 1;
+        while (scan.hasNextLine()) {
+            String[] patt = scan.nextLine().split(" ");
+            int[] arr = new int[patt.length]; 
+            for (int i = 0; i < patt.length; i++) {
+                arr[i] = Integer.parseInt(patt[i]);
+            }
+            count = 0;
+            long startTime = System.nanoTime();
+            introsort(arr);
+            long endTime = System.nanoTime();
+            writer.write(patt.length + " " + count + " " + (endTime - startTime) + "\n");
+            System.out.println(progress++);
+        }
+        writer.close();
     }
 }
