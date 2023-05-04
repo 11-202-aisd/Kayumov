@@ -1,3 +1,5 @@
+package SortAlgoritm;
+
 import java.util.Scanner;
 import java.io.*;
 
@@ -88,7 +90,7 @@ public class Introsort {
 
     public static void main(String[] args) throws IOException {
         Scanner scan = new Scanner(new File("Arrays.txt"));
-        FileWriter writer = new FileWriter("results.txt");
+        FileWriter writer = new FileWriter("SortAlgoritm/results.txt");
         int progress = 1;
         while (scan.hasNextLine()) {
             String[] patt = scan.nextLine().split(" ");
