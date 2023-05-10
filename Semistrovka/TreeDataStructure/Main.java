@@ -102,6 +102,14 @@ public class Main {
         writer.flush();
     }
 
+    public static void countOfOperationForSum(int[] arr) {
+        SegmentTree tree = new SegmentTree(arr);
+        for (int i = 0; i < arr.length; i++) {
+            System.out.println(arr.length - i + " - ");
+            tree.sum(i, arr.length - 1);
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         Scanner scanner = new Scanner(new File("D:\\Java\\Kayumov\\Semistrovka\\TreeDataStructure\\Array.txt"));
         List<Integer> list = new ArrayList<>();
@@ -109,10 +117,11 @@ public class Main {
             list.add(scanner.nextInt());
         }
         scanner.close();
-        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
-        timeForAdd(arr);
-        timeForDelete(arr);
-        timeForIndexing(arr);
-        timeForSums(arr);
+//        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
+//        timeForAdd(arr);
+//        timeForDelete(arr);
+//        timeForIndexing(arr);
+//        timeForSums(arr);
+//        countOfOperationForSum(arr);
     }
 }

@@ -30,12 +30,15 @@ public class SegmentTree {
             throw new IllegalArgumentException("Index " + r + "must be more or equals " + l);
         }
         int result = 0;
+        int count = 0; //Количество итераций
         l += tree.length / 2; r += tree.length / 2;
         while (l <= r) {
             if (l % 2 != 0) result += tree[l++];
             if (r % 2 == 0) result += tree[r--];
             l /= 2; r /= 2;
+            count++;
         }
+        System.out.println(count);
         return result;
     }
     
