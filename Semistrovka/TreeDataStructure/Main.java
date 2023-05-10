@@ -117,11 +117,11 @@ public class Main {
             list.add(scanner.nextInt());
         }
         scanner.close();
-//        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
-//        timeForAdd(arr);
-//        timeForDelete(arr);
-//        timeForIndexing(arr);
-//        timeForSums(arr);
-//        countOfOperationForSum(arr);
+        int[] arr = list.stream().mapToInt(Integer::intValue).toArray();
+        timeForAdd(arr);
+        timeForDelete(arr);
+        timeForIndexing(arr);
+        timeForSums(arr);
+        countOfOperationForSum(arr);
     }
 }
