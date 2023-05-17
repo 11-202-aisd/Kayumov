@@ -1,5 +1,3 @@
-import javax.xml.transform.Source;
-
 public class BinTree {
     public MyNode root;
     private int size;
